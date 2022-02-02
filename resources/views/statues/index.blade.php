@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('layout')
+
+
+@section('content')
+
     <p><a href="{{ route('home') }}">Vissza a főoldalra</a></p>
 
     <table>
@@ -23,14 +19,10 @@
             <td>{{ $statue->height }}</td>
             <td>{{ $statue->price }}</td>
             <td>
-                <form method="POST" action="{{ route('statues.destroy', $statue->id) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Törlés</button>
-                </form>
+                @include('delete-statue-button', ['statue'=>$statue])
             </td>
         </tr>
     @endforeach
     </table>
-</body>
-</html>
+        <a href="{{ route('statues.create') }}">Create</a>
+@endsection
